@@ -16,7 +16,7 @@
   padding: 2rem;
 }
 .question--container {
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
 }
 .hero--header {
@@ -57,6 +57,10 @@
   background: #fffad1;
   border-radius: 50%;
 }
+.right {
+  width: 350px;
+  height: 350px;
+}
 
 .bottom-left {
   content: "";
@@ -94,6 +98,18 @@
   padding: 1rem;
 }
 .quiz {
+  width: 554px;
   background: greenyellow;
   margin-bottom: 1rem;
+}
+
+.question--body {
+  font-family: "karla", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #293264;
+}
+.multiple {
+  display: flex;
+  justify-content: space-around;
 }
