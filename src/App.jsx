@@ -14,6 +14,7 @@ function App() {
 
   const question = questions.map((quiz) => (
     <Questions
+      // key={quiz.question}
       question={quiz.question}
       correct={quiz.correct_answer}
       choice={quiz.incorrect_answers}
@@ -24,7 +25,7 @@ function App() {
       {display ? (
         <div className="question--container">{question}</div>
       ) : (
-        <WelcomePage handleClick = {handleClick}/>
+        <WelcomePage handleClick={handleClick} />
       )}
     </div>
   );

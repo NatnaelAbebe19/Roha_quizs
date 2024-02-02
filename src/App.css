@@ -18,6 +18,7 @@
 .question--container {
   justify-content: center;
   align-items: flex-start;
+  row-gap: 1.3rem;
 }
 .hero--header {
   color: #293264;
@@ -100,7 +101,7 @@
 .quiz {
   width: 554px;
   background: greenyellow;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
 }
 
 .question--body {
@@ -109,7 +110,7 @@
   font-size: 16px;
   color: #293264;
 }
-.multiple {
+#multiple {
   display: flex;
   justify-content: space-around;
 }
