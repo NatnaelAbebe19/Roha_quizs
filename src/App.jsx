@@ -7,10 +7,6 @@ function App() {
   const [questions, setQuestions] = useState(Data);
   const [display, setDisplay] = useState(false);
 
-  // useEffect(() => {
-  //   catchQuestions();
-  // }, []);
-
   function handleClick() {
     setDisplay(true);
   }
@@ -21,14 +17,12 @@ function App() {
       choice={quiz.incorrect_answers}
     />
   ));
-  // console.log(question[0].props);
-  // console.log(questions);
   return (
     <div className="container">
       {display && <div className="question--container">{question}</div>}
       {!display && (
         <div className="hero">
-          <h1 className="hero--header">Quizzical</h1>
+          <h1 className="hero--header">Quiszzical</h1>
           <p className="hero--description">
             Take the quiz and challenge your self
           </p>
