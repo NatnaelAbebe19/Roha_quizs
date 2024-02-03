@@ -23,7 +23,10 @@ function App() {
   return (
     <div className="container">
       {display ? (
-        <div className="question--container">{question} </div>
+        <>
+          <div className="question--container">{question} </div>
+          <button className="question-check">Check answers</button>
+        </>
       ) : (
         <WelcomePage handleClick={handleClick} />
       )}

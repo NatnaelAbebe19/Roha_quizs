@@ -3,8 +3,9 @@
 .container {
   position: relative;
   overflow: hidden;
-  /* width: 615px; */
-  /* height: 600px; */
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
 }
 .hero,
 .question--container {
@@ -115,7 +116,6 @@
 .multiple {
   display: flex;
   column-gap: 1rem;
-  /* justify-content: space-between; */
 }
 .span1 {
   border-radius: 8px;
@@ -127,8 +127,28 @@
   text-align: center;
   color: #293264;
   font-family: "inter", sans-serif;
+  transition: all ease-in-out 0.7s;
 }
 .line {
   border: 0.79px solid #dbdef0;
   margin-bottom: 10px;
+}
+.span1:hover {
+  background: #d6dbf5;
+  border: none;
+}
+.question-check {
+  width: 120px;
+  height: 35px;
+  background: #4d5b9e;
+  color: #f5f7f8;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  font-family: "inter", sans-serif;
+  margin: 0 auto;
+}
+.question-check:hover {
+  opacity: 0.8;
 }
