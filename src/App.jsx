@@ -23,7 +23,7 @@ function App() {
   return (
     <div className="container">
       {display ? (
-        <div className="question--container">{question}</div>
+        <div className="question--container">{question} </div>
       ) : (
         <WelcomePage handleClick={handleClick} />
       )}
