@@ -80,9 +80,8 @@ export default function Questions(props) {
           (e.target.style.border = "none")
         );
   }
-  // let length = Object.keys(selected).length;
 
-  console.log();
+  // let length = Object.keys(selected).length;
   return (
     <div className="questions">
       <div className="question--body">{props.question}</div>
@@ -101,6 +100,7 @@ export default function Questions(props) {
         </span>
       </div>
       <span className="line"></span>
+      <div className="answered"></div>
     </div>
   );
 }
