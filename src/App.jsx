@@ -7,14 +7,18 @@ import "./App.css";
 function App() {
   const [questions, setQuestions] = useState(Data);
   const [display, setDisplay] = useState(false);
-
+  const [count, setCount] = useState(0);
   function handleClick() {
     setDisplay(true);
   }
 
+  function handleSubmit() {
+    
+  }
+  console.log(count);
   const question = questions.map((quiz) => (
     <Questions
-      // key={quiz.question}
+      key={quiz.question}
       question={quiz.question}
       correct={quiz.correct_answer}
       choice={quiz.incorrect_answers}
@@ -25,7 +29,9 @@ function App() {
       {display ? (
         <>
           <div className="question--container">{question} </div>
-          <button className="question-check">Check answers</button>
+          <button className="question-check" onClick={handleSubmit}>
+            Check answsers
+          </button>
         </>
       ) : (
         <WelcomePage handleClick={handleClick} />

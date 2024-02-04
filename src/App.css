@@ -127,13 +127,17 @@
   text-align: center;
   color: #293264;
   font-family: "inter", sans-serif;
-  transition: all ease-in-out 0.7s;
+  transition: all ease-in-out 0.3s;
 }
 .line {
   border: 0.79px solid #dbdef0;
   margin-bottom: 10px;
 }
 .span1:hover {
+  background: #d6dbf5;
+  border: none;
+}
+.span1:focus {
   background: #d6dbf5;
   border: none;
 }
@@ -148,7 +152,10 @@
   font-size: 12px;
   font-family: "inter", sans-serif;
   margin: 0 auto;
+  transition: all ease-in-out 0.3s;
+  cursor: pointer;
 }
 .question-check:hover {
   opacity: 0.8;
+  transform: scale(1.1);
 }
