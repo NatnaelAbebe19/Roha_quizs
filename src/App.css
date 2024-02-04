@@ -166,3 +166,9 @@
   width: 100%;
   margin: 1rem;
 }
+.correct {
+  background: green;
+}
+.incorrect{
+  background: red;
+}

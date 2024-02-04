@@ -1,167 +1,56 @@
 import React, { useEffect, useState } from "react";
 
 export default function Questions(props) {
-  let mergedArray = [...props.choice, props.correct];
-  const { checkAnswers } = props;
-  // const shuffledArray = mergedArray.sort((a, b) => 0.5 - Math.random());
-  // useEffect(() => {
-  //   function shuffleArray(array) {
-  //     const shuffledArray = [...array];
-  //     for (let i = shuffledArray.length - 1; i > 0; i--) {
-  //       const j = Math.floor(Math.random() * (i + 1));
-  //       [shuffledArray[i], shuffledArray[j]] = [
-  //         shuffledArray[j],
-  //         shuffledArray[i],
-  //       ];
-  //     }
-  //     return shuffledArray;
-  //   }
-  //   mergedArray = shuffleArray(mergedArray);
-  // }, []);
+  const { question, correct, choice, checkAnswers, setCorrectAnswers } = props;
 
-  const clicked = {
-    background: "#d6dbf5",
-    border: "none",
-  };
-  const unClicked = {
-    background: "white",
-    border: "0.79px solid #4d5b9e",
-  };
+  let mergedArray = [...choice, correct];
 
-  const [selected, setSelected] = useState({
-    first: false,
-    second: false,
-    third: false,
-    fourth: false,
-  });
+  const [selected, setSelected] = useState([false, false, false, false]);
 
-  function handleClick1(e) {
+  function handleClick(index) {
     if (!checkAnswers) {
-      setSelected((prevSelect) => ({
-        ...prevSelect,
-        first: !prevSelect.first,
-      }));
-      selected.first
-        ? (e.target.style.background = "white")(
-            (e.target.style.border = "0.79px solid #4d5b9e")
-          )
-        : (e.target.style.background = "#d6dbf5")(
-            (e.target.style.border = "none")
-          );
+      setSelected((prevSelect) => {
+        const newSelected = [...prevSelect];
+        newSelected[index] = !newSelected[index];
+        return newSelected;
+      });
     }
   }
 
-  function handleClick2(e) {
-    if (!checkAnswers) {
-      setSelected((prevSelect) => ({
-        ...prevSelect,
-        second: !prevSelect.second,
-      }));
-      selected.second
-        ? (e.target.style.background = "white")(
-            (e.target.style.border = "0.79px solid #4d5b9e")
-          )
-        : (e.target.style.background = "#d6dbf5")(
-            (e.target.style.border = "none")
-          );
+  useEffect(() => {
+    if (checkAnswers) {
+      let count = 0;
+      mergedArray.forEach((answer, index) => {
+        if (selected[index] && answer === correct) {
+          count = count + 1;
+        }
+      });
+      setCorrectAnswers(count);
     }
-  }
-
-  function handleClick3(e) {
-    if (!checkAnswers) {
-      setSelected((prevSelect) => ({
-        ...prevSelect,
-        third: !prevSelect.third,
-      }));
-      selected.third
-        ? (e.target.style.background = "white")(
-            (e.target.style.border = "0.79px solid #4d5b9e")
-          )
-        : (e.target.style.background = "#d6dbf5")(
-            (e.target.style.border = "none")
-          );
-    }
-  }
-  function handleClick4(e) {
-    if (!checkAnswers) {
-      setSelected((prevSelect) => ({
-        ...prevSelect,
-        fourth: !prevSelect.fourth,
-      }));
-      selected.fourth
-        ? (e.target.style.background = "white")(
-            (e.target.style.border = "0.79px solid #4d5b9e")
-          )
-        : (e.target.style.background = "#d6dbf5")(
-            (e.target.style.border = "none")
-          );
-    }
-  }
+  }, [checkAnswers, correct, mergedArray, selected, setCorrectAnswers]);
 
   return (
     <div className="questions">
-      <div className="question--body">{props.question}</div>
+      <div className="question--body">{question}</div>
       <div className="multiple">
-        <span
-          className="span1"
-          onClick={handleClick1}
-          style={
-            selected.first
-              ? checkAnswers && mergedArray[0] === props.correct
-                ? { ...clicked, background: "#94D7A2" }
-                : checkAnswers && mergedArray[0] !== props.correct
-                ? { ...clicked, background: "#F8BCBC" }
-                : clicked
-              : unClicked
-          }
-        >
-          {mergedArray[0]}
-        </span>
-        <span
-          className="span1"
-          onClick={handleClick2}
-          style={
-            selected.second
-              ? checkAnswers && mergedArray[1] === props.correct
-                ? { ...clicked, background: "#94D7A2" }
-                : checkAnswers && mergedArray[1] !== props.correct
-                ? { ...clicked, background: "#F8BCBC" }
-                : clicked
-              : unClicked
-          }
-        >
-          {mergedArray[1]}
-        </span>
-        <span
-          className="span1"
-          onClick={handleClick3}
-          style={
-            selected.third
-              ? checkAnswers && mergedArray[2] === props.correct
-                ? { ...clicked, background: "#94D7A2" }
-                : checkAnswers && mergedArray[2] !== props.correct
-                ? { ...clicked, background: "#F8BCBC" }
-                : clicked
-              : unClicked
-          }
-        >
-          {mergedArray[2]}
-        </span>
-        <span
-          className="span1"
-          onClick={handleClick4}
-          style={
-            selected.fourth
-              ? checkAnswers && mergedArray[3] === props.correct
-                ? { ...clicked, background: "#94D7A2" }
-                : checkAnswers && mergedArray[3] !== props.correct
-                ? { ...clicked, background: "#F8BCBC" }
-                : clicked
-              : unClicked
-          }
-        >
-          {mergedArray[3]}
-        </span>
+        {mergedArray.map((answer, index) => (
+          <span
+            key={index}
+            className="span1"
+            onClick={() => handleClick(index)}
+            style={
+              selected[index]
+                ? checkAnswers && answer === correct
+                  ? { background: "#94D7A2", border: "none" }
+                  : checkAnswers && answer !== correct
+                  ? { background: "#F8BCBC", border: "none" }
+                  : { background: "#d6dbf5", border: "none" }
+                : { background: "white", border: "0.79px solid #4d5b9e" }
+            }
+          >
+            {answer}
+          </span>
+        ))}
       </div>
       <span className="line"></span>
     </div>
