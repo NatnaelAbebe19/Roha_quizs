@@ -2,21 +2,22 @@ import React, { useEffect, useState } from "react";
 
 export default function Questions(props) {
   let mergedArray = [...props.choice, props.correct];
+  const { checkAnswers } = props;
   // const shuffledArray = mergedArray.sort((a, b) => 0.5 - Math.random());
-  useEffect(() => {
-    function shuffleArray(array) {
-      const shuffledArray = [...array];
-      for (let i = shuffledArray.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffledArray[i], shuffledArray[j]] = [
-          shuffledArray[j],
-          shuffledArray[i],
-        ];
-      }
-      return shuffledArray;
-    }
-    mergedArray = shuffleArray(mergedArray);
-  }, []);
+  // useEffect(() => {
+  //   function shuffleArray(array) {
+  //     const shuffledArray = [...array];
+  //     for (let i = shuffledArray.length - 1; i > 0; i--) {
+  //       const j = Math.floor(Math.random() * (i + 1));
+  //       [shuffledArray[i], shuffledArray[j]] = [
+  //         shuffledArray[j],
+  //         shuffledArray[i],
+  //       ];
+  //     }
+  //     return shuffledArray;
+  //   }
+  //   mergedArray = shuffleArray(mergedArray);
+  // }, []);
 
   const clicked = {
     background: "#d6dbf5",
@@ -35,72 +36,134 @@ export default function Questions(props) {
   });
 
   function handleClick1(e) {
-    setSelected((prevSelect) => ({ ...prevSelect, first: !prevSelect.first }));
-    selected.first
-      ? (e.target.style.background = "white")(
-          (e.target.style.border = "0.79px solid #4d5b9e")
-        )
-      : (e.target.style.background = "#d6dbf5")(
-          (e.target.style.border = "none")
-        );
-  }
-  function handleClick2(e) {
-    setSelected((prevSelect) => ({
-      ...prevSelect,
-      second: !prevSelect.second,
-    }));
-    selected.second
-      ? (e.target.style.background = "white")(
-          (e.target.style.border = "0.79px solid #4d5b9e")
-        )
-      : (e.target.style.background = "#d6dbf5")(
-          (e.target.style.border = "none")
-        );
-  }
-  function handleClick3(e) {
-    setSelected((prevSelect) => ({ ...prevSelect, third: !prevSelect.third }));
-    selected.third
-      ? (e.target.style.background = "white")(
-          (e.target.style.border = "0.79px solid #4d5b9e")
-        )
-      : (e.target.style.background = "#d6dbf5")(
-          (e.target.style.border = "none")
-        );
-  }
-  function handleClick4(e) {
-    setSelected((prevSelect) => ({
-      ...prevSelect,
-      fourth: !prevSelect.fourth,
-    }));
-    selected.fourth
-      ? (e.target.style.background = "white")(
-          (e.target.style.border = "0.79px solid #4d5b9e")
-        )
-      : (e.target.style.background = "#d6dbf5")(
-          (e.target.style.border = "none")
-        );
+    if (!checkAnswers) {
+      setSelected((prevSelect) => ({
+        ...prevSelect,
+        first: !prevSelect.first,
+      }));
+      selected.first
+        ? (e.target.style.background = "white")(
+            (e.target.style.border = "0.79px solid #4d5b9e")
+          )
+        : (e.target.style.background = "#d6dbf5")(
+            (e.target.style.border = "none")
+          );
+    }
   }
 
-  // let length = Object.keys(selected).length;
+  function handleClick2(e) {
+    if (!checkAnswers) {
+      setSelected((prevSelect) => ({
+        ...prevSelect,
+        second: !prevSelect.second,
+      }));
+      selected.second
+        ? (e.target.style.background = "white")(
+            (e.target.style.border = "0.79px solid #4d5b9e")
+          )
+        : (e.target.style.background = "#d6dbf5")(
+            (e.target.style.border = "none")
+          );
+    }
+  }
+
+  function handleClick3(e) {
+    if (!checkAnswers) {
+      setSelected((prevSelect) => ({
+        ...prevSelect,
+        third: !prevSelect.third,
+      }));
+      selected.third
+        ? (e.target.style.background = "white")(
+            (e.target.style.border = "0.79px solid #4d5b9e")
+          )
+        : (e.target.style.background = "#d6dbf5")(
+            (e.target.style.border = "none")
+          );
+    }
+  }
+  function handleClick4(e) {
+    if (!checkAnswers) {
+      setSelected((prevSelect) => ({
+        ...prevSelect,
+        fourth: !prevSelect.fourth,
+      }));
+      selected.fourth
+        ? (e.target.style.background = "white")(
+            (e.target.style.border = "0.79px solid #4d5b9e")
+          )
+        : (e.target.style.background = "#d6dbf5")(
+            (e.target.style.border = "none")
+          );
+    }
+  }
+
   return (
     <div className="questions">
       <div className="question--body">{props.question}</div>
       <div className="multiple">
-        <span className="span1" onClick={handleClick1}>
+        <span
+          className="span1"
+          onClick={handleClick1}
+          style={
+            selected.first
+              ? checkAnswers && mergedArray[0] === props.correct
+                ? { ...clicked, background: "#94D7A2" }
+                : checkAnswers && mergedArray[0] !== props.correct
+                ? { ...clicked, background: "#F8BCBC" }
+                : clicked
+              : unClicked
+          }
+        >
           {mergedArray[0]}
         </span>
-        <span className="span1" onClick={handleClick2}>
+        <span
+          className="span1"
+          onClick={handleClick2}
+          style={
+            selected.second
+              ? checkAnswers && mergedArray[1] === props.correct
+                ? { ...clicked, background: "#94D7A2" }
+                : checkAnswers && mergedArray[1] !== props.correct
+                ? { ...clicked, background: "#F8BCBC" }
+                : clicked
+              : unClicked
+          }
+        >
           {mergedArray[1]}
         </span>
-        <span className="span1" onClick={handleClick3}>
+        <span
+          className="span1"
+          onClick={handleClick3}
+          style={
+            selected.third
+              ? checkAnswers && mergedArray[2] === props.correct
+                ? { ...clicked, background: "#94D7A2" }
+                : checkAnswers && mergedArray[2] !== props.correct
+                ? { ...clicked, background: "#F8BCBC" }
+                : clicked
+              : unClicked
+          }
+        >
           {mergedArray[2]}
         </span>
-        <span className="span1" onClick={handleClick4}>
+        <span
+          className="span1"
+          onClick={handleClick4}
+          style={
+            selected.fourth
+              ? checkAnswers && mergedArray[3] === props.correct
+                ? { ...clicked, background: "#94D7A2" }
+                : checkAnswers && mergedArray[3] !== props.correct
+                ? { ...clicked, background: "#F8BCBC" }
+                : clicked
+              : unClicked
+          }
+        >
           {mergedArray[3]}
         </span>
       </div>
       <span className="line"></span>
-      <div className="answered"></div>
     </div>
   );
 }
