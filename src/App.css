@@ -7,6 +7,15 @@
   flex-direction: column;
   margin-bottom: 1rem;
   margin-top: 1rem;
+  animation: animate 0.4s linear;
+}
+@keyframes animate {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .hero,
 .question--container {
@@ -14,9 +23,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
-  /* width: 34rem; */
-  /* height: 34rem; */
+  animation: animate 0.7s linear;
   background: #f5f7fb;
   padding: 2rem;
 }
@@ -156,10 +163,11 @@
   margin: 0 auto;
   transition: all ease-in-out 0.3s;
   cursor: pointer;
+  opacity: 0.8;
 }
 .question-check:hover {
-  opacity: 0.8;
   transform: scale(1.1);
+  opacity: 1;
 }
 .answered {
   text-align: center;
@@ -169,6 +177,6 @@
 .correct {
   background: green;
 }
-.incorrect{
+.incorrect {
   background: red;
 }

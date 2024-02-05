@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import Questions from "./components/Questions";
 import Data from "./assets/Data";
 import WelcomePage from "./components/WelcomePage";
+import Confetti from "react-confetti";
 import "./App.css";
+// import Confetti from "react-confetti/dist/types/Confetti";
 
 function App() {
   const [questions, setQuestions] = useState(Data);
@@ -24,28 +26,6 @@ function App() {
     }
   }
 
-  // useEffect(() => {
-  //   if (checkAnswers) {
-  //     let count = 0;
-  //     questions.forEach((quiz) => {
-  //       const { correct_answer, incorrect_answers } = quiz;
-  //       const mergedArray = [...incorrect_answers, correct_answer];
-  //       let selectedAnswers = [];
-  //       Object.keys(quiz).forEach((key) => {
-  //         if (key.startsWith("answer") && quiz[key]) {
-  //           selectedAnswers.push(mergedArray[parseInt(key.slice(-1))]);
-  //         }
-  //       });
-  //       if (
-  //         selectedAnswers.length === 1 &&
-  //         selectedAnswers[0] === correct_answer
-  //       ) {
-  //         count = count + 1;
-  //       }
-  //     });
-  //     setCorrectAnswers(count);
-  //   }
-  // }, [checkAnswers, questions]);
   useEffect(() => {
     // setCorrectAnswers((preNum) => preNum + 1);
   }, [setCorrectAnswers]);
@@ -54,6 +34,7 @@ function App() {
     <div className="container">
       {display ? (
         <>
+          {correctAnswers >= 4 && <Confetti />}
           <div className="question--container">
             {questions.map((quiz) => (
               <Questions
