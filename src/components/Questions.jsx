@@ -2,10 +2,21 @@ import React, { useEffect, useState } from "react";
 
 export default function Questions(props) {
   const { question, correct, choice, checkAnswers, setCorrectAnswers } = props;
+  const [selected, setSelected] = useState([false, false, false, false]);
 
   let mergedArray = [...choice, correct];
 
-  const [selected, setSelected] = useState([false, false, false, false]);
+  useEffect(() => {
+    if (checkAnswers) {
+      let newCount = 0;
+      mergedArray.forEach((answer, index) => {
+        if (selected[index] && answer === correct) {
+          newCount += 1;
+        }
+      });
+      setCorrectAnswers((prevCount) => prevCount + newCount);
+    }
+  }, [checkAnswers]);
 
   function handleClick(index) {
     if (!checkAnswers) {
@@ -16,18 +27,6 @@ export default function Questions(props) {
       });
     }
   }
-
-  useEffect(() => {
-    if (checkAnswers) {
-      let count = 0;
-      mergedArray.forEach((answer, index) => {
-        if (selected[index] && answer === correct) {
-          count = count + 1;
-        }
-      });
-      setCorrectAnswers(count);
-    }
-  }, [checkAnswers, correct, mergedArray, selected, setCorrectAnswers]);
 
   return (
     <div className="questions">

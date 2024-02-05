@@ -15,31 +15,40 @@ function App() {
   }
 
   function handleSubmit() {
-    setCheckAnswers(true);
+    if (!checkAnswers) {
+      setCheckAnswers(true);
+    } else {
+      setCheckAnswers(false);
+      setDisplay(false);
+      setCorrectAnswers(0);
+    }
   }
 
+  // useEffect(() => {
+  //   if (checkAnswers) {
+  //     let count = 0;
+  //     questions.forEach((quiz) => {
+  //       const { correct_answer, incorrect_answers } = quiz;
+  //       const mergedArray = [...incorrect_answers, correct_answer];
+  //       let selectedAnswers = [];
+  //       Object.keys(quiz).forEach((key) => {
+  //         if (key.startsWith("answer") && quiz[key]) {
+  //           selectedAnswers.push(mergedArray[parseInt(key.slice(-1))]);
+  //         }
+  //       });
+  //       if (
+  //         selectedAnswers.length === 1 &&
+  //         selectedAnswers[0] === correct_answer
+  //       ) {
+  //         count = count + 1;
+  //       }
+  //     });
+  //     setCorrectAnswers(count);
+  //   }
+  // }, [checkAnswers, questions]);
   useEffect(() => {
-    if (checkAnswers) {
-      let count = 0;
-      questions.forEach((quiz) => {
-        const { correct_answer, incorrect_answers } = quiz;
-        const mergedArray = [...incorrect_answers, correct_answer];
-        let selectedAnswers = [];
-        Object.keys(quiz).forEach((key) => {
-          if (key.startsWith("answer") && quiz[key]) {
-            selectedAnswers.push(mergedArray[parseInt(key.slice(-1))]);
-          }
-        });
-        if (
-          selectedAnswers.length === 1 &&
-          selectedAnswers[0] === correct_answer
-        ) {
-          count = count + 1;
-        }
-      });
-      setCorrectAnswers(count);
-    }
-  }, [checkAnswers, questions]);
+    // setCorrectAnswers((preNum) => preNum + 1);
+  }, [setCorrectAnswers]);
 
   return (
     <div className="container">
