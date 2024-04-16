@@ -5,3 +5,6 @@ The Quiz Web App is a simple yet interactive web application that allows users t
 - React JS
 - HTML
 - css
+
+### DEMO
+<a href="https://roha-quizs.vercel.app/" target="_blank">Click Here </a>
