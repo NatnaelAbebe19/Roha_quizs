@@ -13,7 +13,7 @@ const data = [
     difficulty: "easy",
     category: "Science: Computers",
     question:
-      "Which computer hardware device provides an interface for all other connected devices to communicate?",
+      "Which computer hardware devices provides an interface for all other connected devices to communicate?",
     correct_answer: "Motherboard",
     incorrect_answers: [
       "Central Processing Unit",

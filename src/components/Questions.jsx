@@ -5,7 +5,7 @@ export default function Questions(props) {
   const [selected, setSelected] = useState([false, false, false, false]);
 
   let mergedArray = [...choice, correct];
-
+  
   useEffect(() => {
     if (checkAnswers) {
       let newCount = 0;
